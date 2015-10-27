@@ -29,6 +29,7 @@ class formzHooks {
 
         $this->config->emailFrom = $this->modx->getOption('emailFrom', $this->hook->formit->config, $this->modx->getOption('emailsender'), true);
         $this->config->emailTo = $this->modx->getOption('emailTo', $this->hook->formit->config, '');
+        $this->config->replyTo = $this->modx->getOption('emailReplyTo', $this->hook->formit->config, $this->config->emailFrom, true);
         $this->config->emailTpl = $this->modx->getOption('emailTpl', $this->hook->formit->config, 'emailTpl');
         $this->config->senderName = $this->modx->getOption('senderName', $this->hook->formit->config, $this->formArray['formName'], true);
         $this->config->subject = $this->modx->getOption('subject', $this->hook->formit->config, 'Website Contact Form on ' . date('Y-m-d'));
@@ -117,7 +118,7 @@ class formzHooks {
 	        foreach($tos as $to) {
                 $this->modx->mail->address('to', $to);
 	        }
-            $this->modx->mail->address('reply-to', $this->config->emailFrom);
+            $this->modx->mail->address('reply-to', $this->config->replyTo);
             $this->modx->mail->setHTML(true);
             if (!$this->modx->mail->send()) {
                 $this->modx->log(modX::LOG_LEVEL_ERROR, 'An error occurred while trying to email the Admin: ' . $this->modx->mail->mailer->ErrorInfo);
