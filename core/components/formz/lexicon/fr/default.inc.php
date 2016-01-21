@@ -8,7 +8,7 @@
  * @package formz
  * @subpackage lexicon
  */
-$_lang['formz'] = 'Formz Builder';
+$_lang['formz.menu'] = 'Formz Builder';
 $_lang['formz.menu_desc'] = 'Gérez vos formulaire à utiliser sur votre site.';
 $_lang['formz.intro_msg'] = 'Gérez vos formulaires.';
 $_lang['formz.form'] = 'Formulaires';

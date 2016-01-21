@@ -16,7 +16,7 @@
     ],
     "menus": [
       {
-        "text": "formz",
+        "text": "formz.menu",
         "description": "formz.menu_desc",
         "action": 1,
         "parent": "components"

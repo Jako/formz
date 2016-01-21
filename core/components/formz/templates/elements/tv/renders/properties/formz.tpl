@@ -43,6 +43,13 @@ MODx.load({
         ,name: 'prop_fieldWrapperTpl'
         ,value: params['fieldWrapperTpl'] || ''
         ,listeners: oc
+        ,anchor: '100%'
+    },{
+        xtype: 'textfield'
+        ,fieldLabel: _('formz.output.properties.hookPrefix')
+        ,name: 'prop_hookPrefix'
+        ,value: params['hookPrefix'] || ''
+        ,listeners: oc
         ,anchor: '100%'{literal}
     }]
     ,renderTo: 'tv-wprops-form{/literal}{$tv}{literal}'

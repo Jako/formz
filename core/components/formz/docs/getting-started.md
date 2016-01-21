@@ -1,6 +1,6 @@
 <style>
-.figure { padding: 10px 0; }
-.figure img { height: auto; max-width: 100%; }
+.figure { padding: 10px 0 15px }
+.figure img { padding: 0 0 5px; height: auto; max-width: 100% }
 </style>
 ## Quickstart Guide
 Here I will walk you through creating your first Formz form:
@@ -16,10 +16,10 @@ Here I will walk you through creating your first Formz form:
 9. Repeat step 7 but this time lets enter in the `Label` field *"Email"* and on the `Properties` tab lets check the `required` checkbox and select from the `Validation` field *"Email"*.<div class="figure" id="figure-2-9">![Validation Field](images/ch2_quickstart_step9.png)<br/>**Figure 9** Validation Field
 10. Repeat step 7 but this time lets enter in the `Label` field *"Message"*, then change the `Type` field to *"Textarea"* and on the `Properties` tab check the `required` checkbox<div class="figure" id="figure-2-10">![Type Field](images/ch2_quickstart_step10.png)<br/>**Figure 10** Type Field
 11. Lets create our Template Variable to display our Form on the website, lets enter in the `Name` field *"form"* and in the `Caption` field *"Form"*.<div class="figure" id="figure-2-11">![Template Variable](images/ch2_quickstart_step11.png)<br/>**Figure 11** Template Variable
-12. Click the `Input Options` tab and set the `Input Type` field to *"formz"*.<div class="figure" id="figure-2-12">![Input Options](images/ch2_quickstart_step12.png)<br/>**Figure 12** Input Options
-13. Click the `Output Options` tab and set the `Output Type` field to *"formz"*.<div class="figure" id="figure-2-13">![Output Options](images/ch2_quickstart_step13.png)<br/>**Figure 13** Output Options
+12. Click the `Input Options` tab and set the `Input Type` field to *"Formz"*.<div class="figure" id="figure-2-12">![Input Options](images/ch2_quickstart_step12.png)<br/>**Figure 12** Input Options
+13. Click the `Output Options` tab and set the `Output Type` field to *"Formz"*.<div class="figure" id="figure-2-13">![Output Options](images/ch2_quickstart_step13.png)<br/>**Figure 13** Output Options
 14. Click the `Template Access` tab and set which template you want to have access to your Template Variable.<div class="figure" id="figure-2-14">![Template Variable Tab](images/ch2_quickstart_step14.png)<br/>**Figure 14** Template Variable Tab
 15. Place you newly created Template Variable `[[*form]]` inside your template or in the content area of the page you will create. I will do the latter for this guide.<div class="figure" id="figure-2-15">![Page Content](images/ch2_quickstart_step15.png)<br/>**Figure 15** Page Content
-16. Click the `Template Variables` tab and select your *"Contact"* from the `Form` field.<div class="figure" id="figure-2-16">![Template Variable Tab](images/ch2_quickstart_step16.png)<br/>**Figure 16** Template Variable Tab
+16. Click the `Template Variables` tab and select your *"Contact"* from the `Form` field.<div class="figure" id="figure-2-16">![Template Variables Tab](images/ch2_quickstart_step16.png)<br/>**Figure 16** Template Variables Tab
 
 Congratulations you have created your first web form with Formz, now go and create more and explore the features.

@@ -8,7 +8,7 @@
  * @package formz
  * @subpackage lexicon
  */
-$_lang['formz'] = 'Formulieren';
+$_lang['formz.menu'] = 'Formulieren';
 $_lang['formz.menu_desc'] = 'Beheer de formulieren die op de website gebruikt kunnen worden.';
 $_lang['formz.intro_msg'] = 'Beheer hier de formulieren die op de website gebruikt kunnen worden.';
 $_lang['formz.form'] = 'Formulieren';

@@ -4,9 +4,14 @@ Formz 1.2.0
 ======================
 - Added fieldTypeTpl parameter
 - Added fieldWrapperTpl parameter
-- Added field type template to the output options of a Formz TV
-- Added field wrapper template to the output options of a Formz TV
+- Added Form Field Type Template to the output options of a Formz TV
+- Added Form Field Wrapper Template to the output options of a Formz TV
+- Added FormIt Hooks Prefix to the output options of a Formz TV
 - Added Help Text field in the field configuration form window
+- Added Dutch translation
+- Enabled plugin events in the processor classes
+- Added emailReplyTo property to hooks class
+- Added Mandrill properties to hooks class
 
 Formz 1.1.1
 ======================

@@ -29,10 +29,12 @@ class formzHooks {
 
         $this->config->emailFrom = $this->modx->getOption('emailFrom', $this->hook->formit->config, $this->modx->getOption('emailsender'), true);
         $this->config->emailTo = $this->modx->getOption('emailTo', $this->hook->formit->config, '');
-        $this->config->replyTo = $this->modx->getOption('emailReplyTo', $this->hook->formit->config, $this->config->emailFrom, true);
+        $this->config->replyTo = $this->modx->getOption('emailReplyTo', $this->hook->formit->config, '', true);
         $this->config->emailTpl = $this->modx->getOption('emailTpl', $this->hook->formit->config, 'emailTpl');
         $this->config->senderName = $this->modx->getOption('senderName', $this->hook->formit->config, $this->formArray['formName'], true);
         $this->config->subject = $this->modx->getOption('subject', $this->hook->formit->config, 'Website Contact Form on ' . date('Y-m-d'));
+        $this->config->mandrillApiUsername = $this->modx->getOption('mandrillApiUsername', $this->hook->formit->config, '');
+        $this->config->mandrillApiKey = $this->modx->getOption('mandrillApiKey', $this->hook->formit->config, '');
 
         $this->config->data = $this->hook->getValues();
     }
@@ -110,17 +112,15 @@ class formzHooks {
             $message = $this->fmz->getChunk($this->config->emailTpl, $newData);
 
             $this->modx->getService('mail', 'mail.modPHPMailer');
-            
-            $mandrillApiUsername = $this->modx->getOption('mandrill_api_username');
-            $mandrillApiKey = $this->modx->getOption('mandrill_api_key');
-            if ($mandrillApiUsername && $mandrillApiKey) {
-            	$this->modx->mail->mailer->Mailer = 'smtp';
-		$this->modx->mail->mailer->SMTPAuth = true;
-		$this->modx->mail->set(modMail::MAIL_SMTP_HOSTS, 'smtp.mandrillapp.com');
-	    	$this->modx->mail->set(modMail::MAIL_SMTP_PORT, '587');
-		$this->modx->mail->mailer->Username = $this->modx->getOption('mandrill_api_username');
-	    	$this->modx->mail->set(modMail::MAIL_SMTP_PASS, $this->modx->getOption('mandrill_api_key'));
-	    	$this->modx->mail->set(modMail::MAIL_SMTP_PREFIX, 'tls');
+
+            if ($this->config->mandrillApiUsername && $this->config->mandrillApiKey) {
+                $this->modx->mail->mailer->Mailer = 'smtp';
+                $this->modx->mail->mailer->SMTPAuth = true;
+                $this->modx->mail->set(modMail::MAIL_SMTP_HOSTS, 'smtp.mandrillapp.com');
+                $this->modx->mail->set(modMail::MAIL_SMTP_PORT, '587');
+                $this->modx->mail->mailer->Username = $this->config->mandrillApiUsername;
+                $this->modx->mail->set(modMail::MAIL_SMTP_PASS, $this->config->mandrillApiKey);
+                $this->modx->mail->set(modMail::MAIL_SMTP_PREFIX, 'tls');
             }
 
             $this->modx->mail->set(modMail::MAIL_BODY, $message);
@@ -131,7 +131,9 @@ class formzHooks {
 	        foreach($tos as $to) {
                 $this->modx->mail->address('to', $to);
 	        }
-            $this->modx->mail->address('reply-to', $this->config->replyTo);
+            if ($this->config->replyTo) {
+                $this->modx->mail->address('reply-to', $this->config->replyTo);
+            }
             $this->modx->mail->setHTML(true);
             if (!$this->modx->mail->send()) {
                 $this->modx->log(modX::LOG_LEVEL_ERROR, 'An error occurred while trying to email the Admin: ' . $this->modx->mail->mailer->ErrorInfo);

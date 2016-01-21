@@ -194,7 +194,7 @@ Formz.panel.NewForm = function (config) {
 		,border: false
 		,cls: 'container form-with-labels'
 		,items: [{
-			html: '<h2>' + _('formz') + '</h2>'
+			html: '<h2>' + _('formz.menu') + '</h2>'
             ,cls: 'modx-page-header'
 			,border: false
 		}, MODx.getPageStructure(tbs)]
