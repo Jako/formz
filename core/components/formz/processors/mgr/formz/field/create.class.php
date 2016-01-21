@@ -8,6 +8,8 @@ class FormzFieldCreateProcessor extends modObjectCreateProcessor {
 
     /* Used to load the correct language error message */
     public $objectType = 'formz.field';
+    
+    public $beforeSaveEvent = 'OnFormzFormsFieldsBeforeSave';
 
     /* Set the default validation type to false for no validation on field type */
     private $validationType = false;
