@@ -51,6 +51,7 @@ $_lang['formz.form.action_button_desc'] = 'De tekst die op de verzendknop moet s
 
 // Fields
 $_lang['formz.field.name'] = 'Label';
+$_lang['formz.field.help_text'] = 'Help-tekst';
 $_lang['formz.field.type'] = 'Type';
 $_lang['formz.field.values'] = 'Waarden <em>Zet tussen elke waarde twee verticale streepjes. Zo: groen||rood||blauw</em>';
 $_lang['formz.field.default'] = 'Standaard waarde (deze wordt al ingevuld). Optioneel';
