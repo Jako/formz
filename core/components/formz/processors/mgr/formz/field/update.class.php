@@ -13,15 +13,24 @@ class FormzFieldUpdateProcessor extends modObjectUpdateProcessor {
     private $validationType = false;
 
     public function beforeSave() {
+    	$formId = $this->getProperty('form_id');
         $label = $this->getProperty('label');
+        $helpText = $this->getProperty('help_text');
         $type = $this->getProperty('type');
         $default = $this->getProperty('default');
+
+    	if (empty($label)) {
+    		$this->addFieldError('label', $this->modx->lexicon('formz.field_err_ns'));
+    	} else if ($this->doesAlreadyExist(array('label' => $label, 'form_id' => $formId))) {
+    		$this->addFieldError('label', $this->modx->lexicon('formz.field_err_ae'));
+    	}
 
         switch ($type) {
             case 'select':
             case 'checkbox':
             case 'radio':
                 $values = $this->getProperty('values');
+                $this->validationType = false;
                 break;
             default:
                 // textbox
@@ -32,6 +41,9 @@ class FormzFieldUpdateProcessor extends modObjectUpdateProcessor {
         $settings = array(
             'label' => $label
         );
+
+        if (!empty($helpText))
+            $settings['help_text'] = $helpText;
 
         if (!empty($default))
             $settings['default'] = $default;
@@ -56,13 +68,12 @@ class FormzFieldUpdateProcessor extends modObjectUpdateProcessor {
         $validation = $this->getProperty('validation');
         $fieldId = $this->object->get('id');
 
-        if (!empty($validation)) {
+        if ($validation) {
             $msg = $this->getProperty('val_error_message');
             $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
                 'field_id' => $fieldId,
                 'type' => $validation,
             ));
-
             if (empty($fieldValidation)) {
                 $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
                     'field_id' => $fieldId,
@@ -71,10 +82,8 @@ class FormzFieldUpdateProcessor extends modObjectUpdateProcessor {
                 if ($fieldValidation && $fieldValidation instanceof fmzFormsValidation) {
                     $fieldValidation->remove();
                 }
-
                 $fieldValidation = $this->modx->newObject('fmzFormsValidation');
             }
-
             $fieldValidation->fromArray(array(
                 'field_id' => $fieldId,
                 'type' => $validation,
@@ -98,16 +107,14 @@ class FormzFieldUpdateProcessor extends modObjectUpdateProcessor {
         $fieldId = $this->object->get('id');
 
         if ($required) {
-            $msg = $this->getProperty('error_message');
+            $msg = $this->getProperty('error_message', $this->modx->lexicon('formz.field.validation.required'));
             $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
                 'field_id' => $fieldId,
                 'type' => 'required',
             ));
-
             if (empty($fieldValidation)) {
                 $fieldValidation = $this->modx->newObject('fmzFormsValidation');
             }
-
             $fieldValidation->fromArray(array(
                 'field_id' => $fieldId,
                 'type' => 'required',

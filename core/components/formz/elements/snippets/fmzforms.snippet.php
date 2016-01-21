@@ -10,10 +10,12 @@ if (!($fmz instanceof Formz)) return '';
 /**
  * Snippet Config
  */
-$tpl = $modx->getOption('tpl', $scriptProperties, 'formTpl');
-$id = $modx->getOption('id', $scriptProperties, null);
-$hookPrefix = $modx->getOption('hookPrefix', $scriptProperties, 'fmzForm_');
-$fieldTpl = $modx->getOption('fieldTpl', $scriptProperties, 'fieldTpl');
+$tpl = $modx->getOption('tpl', $scriptProperties, 'formTpl', true);
+$id = $modx->getOption('id', $scriptProperties, null, true);
+$hookPrefix = $modx->getOption('hookPrefix', $scriptProperties, 'fmzForm_', true);
+$fieldTpl = $modx->getOption('fieldTpl', $scriptProperties, 'fieldTpl', true);
+$fieldTypesTpl = $modx->getOption('fieldTypesTpl', $scriptProperties, '', true);
+$fieldWrapTpl = $modx->getOption('fieldWrapTpl', $scriptProperties, '', true);
 $fieldNaming = 'field';
 $sortBy = 'Fields.order,Fields.id';
 $sortDir = 'ASC';
@@ -79,6 +81,8 @@ foreach ($form->Fields as $field) {
     $settings = $modx->fromJSON($fieldArray['settings']);
     $alias = $fieldNaming . $fieldArray['id'];
     $settings['id'] = $alias;
+    $settings['fieldTypesTpl'] = $fieldTypesTpl;
+    $settings['fieldWrapTpl'] = $fieldWrapTpl;
     $fieldArray = array_merge($fieldArray, $settings);
     unset($fieldArray['settings']);
 

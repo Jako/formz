@@ -51,6 +51,7 @@ $_lang['formz.form.action_button_desc'] = 'Le texte affiché sur le bouton d\'en
 
 // Fields
 $_lang['formz.field.name'] = 'Intitulé (label)';
+$_lang['formz.field.help_text'] = 'Texte Complémentaire';
 $_lang['formz.field.type'] = 'Type';
 $_lang['formz.field.values'] = 'Valeurs';
 $_lang['formz.field.default'] = 'Valeur par défaut';

@@ -51,6 +51,7 @@ $_lang['formz.form.action_button_desc'] = 'The text that the form submit button 
 
 // Fields
 $_lang['formz.field.name'] = 'Label';
+$_lang['formz.field.help_text'] = 'Help Text';
 $_lang['formz.field.type'] = 'Type';
 $_lang['formz.field.values'] = 'Values';
 $_lang['formz.field.default'] = 'Default Value';

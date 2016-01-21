@@ -51,6 +51,7 @@ $_lang['formz.form.action_button_desc'] = 'Text som formulärets submit knapp sk
 
 // Fields
 $_lang['formz.field.name'] = 'Etikett';
+$_lang['formz.field.help_text'] = 'Ytterligare Text';
 $_lang['formz.field.type'] = 'Typ';
 $_lang['formz.field.values'] = 'Värden';
 $_lang['formz.field.default'] = 'Standardvärde';

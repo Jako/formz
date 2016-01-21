@@ -1,5 +1,13 @@
 Changelog for Formz.
 
+Formz 1.2.0
+======================
+- Added fieldTypeTpl parameter
+- Added fieldWrapperTpl parameter
+- Added field type template to the output options of a Formz TV
+- Added field wrapper template to the output options of a Formz TV
+- Added Help Text field in the field configuration form window
+
 Formz 1.1.1
 ======================
 - Updated email hook for multiple TO addresses

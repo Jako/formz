@@ -8,17 +8,17 @@ $corePath = $modx->getOption('formz.core_path', null, $modx->getOption('core_pat
 $modx->lexicon->load('formz:tv');
 
 switch ($modx->event->name) {
+    case 'OnManagerPageBeforeRender':
+        $modx->controller->addLexiconTopic('formz:tv');
+        break;
     case 'OnTVInputRenderList':
         $modx->event->output($corePath.'processors/mgr/tv/input/');
         break;
     case 'OnTVOutputRenderList':
         $modx->event->output($corePath.'processors/mgr/tv/output/');
         break;
-    case 'OnTVInputPropertiesList':
-        //$modx->event->output($corePath.'processors/mgr/tv/input/options/');
-        break;
     case 'OnTVOutputRenderPropertiesList':
-         $modx->event->output($corePath.'processors/mgr/tv/output/options/');
+        $modx->event->output($corePath.'processors/mgr/tv/output/options/');
         break;
 }
 return;

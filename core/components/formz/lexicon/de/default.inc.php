@@ -51,6 +51,7 @@ $_lang['formz.form.action_button_desc'] = 'Der Text, mit dem der Absende-Button 
 
 // Fields
 $_lang['formz.field.name'] = 'Beschriftung (Label)';
+$_lang['formz.field.help_text'] = 'Zusatztext';
 $_lang['formz.field.type'] = 'Typ';
 $_lang['formz.field.values'] = 'Werte';
 $_lang['formz.field.default'] = 'Standardwert';

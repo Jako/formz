@@ -18,16 +18,30 @@ MODx.load({
     ,border: false
     ,items: [{{/literal}
         xtype: 'textfield' 
-        ,fieldLabel: '{$fmz.tpl}'
+        ,fieldLabel: _('formz.output.properties.tpl')
         ,name: 'prop_tpl'
         ,value: params['tpl'] || ''
         ,listeners: oc
         ,anchor: '100%'
     },{
         xtype: 'textfield' 
-        ,fieldLabel: '{$fmz.fieldTpl}'
+        ,fieldLabel: _('formz.output.properties.fieldTpl')
         ,name: 'prop_fieldTpl'
         ,value: params['fieldTpl'] || ''
+        ,listeners: oc
+        ,anchor: '100%'
+    },{
+        xtype: 'textfield'
+        ,fieldLabel: _('formz.output.properties.fieldTypeTpl')
+        ,name: 'prop_fieldTypeTpl'
+        ,value: params['fieldTypeTpl'] || ''
+        ,listeners: oc
+        ,anchor: '100%'
+    },{
+        xtype: 'textfield'
+        ,fieldLabel: _('formz.output.properties.fieldWrapperTpl')
+        ,name: 'prop_fieldWrapperTpl'
+        ,value: params['fieldWrapperTpl'] || ''
         ,listeners: oc
         ,anchor: '100%'{literal}
     }]
