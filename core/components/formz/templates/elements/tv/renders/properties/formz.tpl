@@ -39,9 +39,9 @@ MODx.load({
         ,anchor: '100%'
     },{
         xtype: 'textfield'
-        ,fieldLabel: _('formz.output.properties.fieldWrapperTpl')
-        ,name: 'prop_fieldWrapperTpl'
-        ,value: params['fieldWrapperTpl'] || ''
+        ,fieldLabel: _('formz.output.properties.fieldWrapTpl')
+        ,name: 'prop_fieldWrapTpl'
+        ,value: params['fieldWrapTpl'] || ''
         ,listeners: oc
         ,anchor: '100%'
     },{

@@ -122,11 +122,6 @@
   "build": {
     "readme": "docs/readme.txt",
     "license": "docs/license.txt",
-    "changelog": "docs/changelog.txt",
-    "resolver": {
-      "after": [
-        "delicart.update_tables.php"
-      ]
-    }
+    "changelog": "docs/changelog.txt"
   }
 }
