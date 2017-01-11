@@ -3,6 +3,9 @@
  * The base formz snippet.
  *
  * @package formz
+ *
+ * @var modX $modx
+ * @var array $scriptProperties
  */
 $fmz = $modx->getService('formz', 'Formz', $modx->getOption('formz.core_path', null, $modx->getOption('core_path') . 'components/formz/') . 'model/formz/', $scriptProperties);
 if (!($fmz instanceof Formz)) return '';
@@ -90,6 +93,7 @@ foreach ($form->Fields as $field) {
     $c = $modx->newQuery('fmzFormsValidation');
     $c->where(array('field_id' => $field->id));
     $c->sortby('field_id', 'ASC');
+    /** @var fmzFormsValidation[] $validation */
     $validation = $modx->getCollection('fmzFormsValidation', $c);
     foreach ($validation as $val) {
         $valArray = $val->toArray();
@@ -121,6 +125,8 @@ foreach ($form->Fields as $field) {
                     $vType = 'vTextRequired';
                     break;
             }
+        } else {
+            $vType = '';
         }
 
         if (!empty($valArray['error_message'])) {

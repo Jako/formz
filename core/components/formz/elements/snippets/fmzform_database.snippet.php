@@ -1,7 +1,10 @@
 <?php
 /**
  * @package formz
+ *
+ * @var modX $modx
  * @var Formz $fmz
+ * @var fiHooks $hook
  */
 $corePath = $modx->getOption('formz.core_path', null, $modx->getOption('core_path') . 'components/formz/');
 require_once $corePath . '/model/formz/formzhooks.class.php';
