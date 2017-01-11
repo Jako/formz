@@ -1,6 +1,9 @@
 Changelog for Formz
 ===================
 
+- 1.3.0
+    - Add emailCC, emailCCName, emailBCC, emailBCCName to fmzForm_database_email hook
+
 - 1.2.0
     - Added fieldTypeTpl parameter
     - Added fieldWrapTpl parameter

@@ -11,6 +11,10 @@
 class formzHooks {
     /** @var \modX $modx */
     public $modx;
+    /** @var fiHooks $hook */
+    public $hook;
+    /** @var Formz $fmz */
+    public $fmz;
 
     public function __construct(Formz &$fmz, $hook) {
         $this->fmz =& $fmz;
@@ -30,6 +34,10 @@ class formzHooks {
         $this->config->emailFrom = $this->modx->getOption('emailFrom', $this->hook->formit->config, $this->modx->getOption('emailsender'), true);
         $this->config->emailTo = $this->modx->getOption('emailTo', $this->hook->formit->config, '');
         $this->config->replyTo = $this->modx->getOption('emailReplyTo', $this->hook->formit->config, '', true);
+        $this->config->emailCC = $this->modx->getOption('emailCC', $this->hook->formit->config, '', true);
+        $this->config->emailCCName = $this->modx->getOption('emailCCName', $this->hook->formit->config, '', true);
+        $this->config->emailBCC = $this->modx->getOption('emailBCC', $this->hook->formit->config, '', true);
+        $this->config->emailBCCName = $this->modx->getOption('emailBCCName', $this->hook->formit->config, '', true);
         $this->config->emailTpl = $this->modx->getOption('emailTpl', $this->hook->formit->config, 'emailTpl');
         $this->config->senderName = $this->modx->getOption('senderName', $this->hook->formit->config, $this->formArray['formName'], true);
         $this->config->subject = $this->modx->getOption('subject', $this->hook->formit->config, 'Website Contact Form on ' . date('Y-m-d'));
@@ -134,6 +142,37 @@ class formzHooks {
             if ($this->config->replyTo) {
                 $this->modx->mail->address('reply-to', $this->config->replyTo);
             }
+            if ($this->config->emailCC) {
+                $emailCC = explode(',', $this->config->emailCC);
+                $emailCCName = explode(',', $this->config->emailCCName);
+                $numAddresses = count($emailCC);
+                for ($i = 0; $i < $numAddresses; $i++) {
+                    $etn = !empty($emailCCName[$i]) ? $emailCCName[$i] : '';
+                    if (!empty($etn)) {
+                        $etn = $this->hook->_process($etn, $newData);
+                    }
+                    $emailCC[$i] = $this->hook->_process($emailCC[$i], $newData);
+                    if (!empty($emailCC[$i])) {
+                        $this->modx->mail->address('cc', $emailCC[$i], $etn);
+                    }
+                }
+            }
+            if ($this->config->emailBCC) {
+                $emailBCC = explode(',', $this->config->emailBCC);
+                $emailBCCName = explode(',', $this->config->emailBCCName);
+                $numAddresses = count($emailBCC);
+                for ($i = 0; $i < $numAddresses; $i++) {
+                    $etn = !empty($emailBCCName[$i]) ? $emailBCCName[$i] : '';
+                    if (!empty($etn)) {
+                        $etn = $this->hook->_process($etn, $newData);
+                    }
+                    $emailBCC[$i] = $this->hook->_process($emailBCC[$i], $newData);
+                    if (!empty($emailBCC[$i])) {
+                        $this->modx->mail->address('bcc', $emailBCC[$i], $etn);
+                    }
+                }
+            }
+
             $this->modx->mail->setHTML(true);
             if (!$this->modx->mail->send()) {
                 $this->modx->log(modX::LOG_LEVEL_ERROR, 'An error occurred while trying to email the Admin: ' . $this->modx->mail->mailer->ErrorInfo);
